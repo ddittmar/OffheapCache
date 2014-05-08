@@ -14,8 +14,8 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
-import de.dirkdittmar.offheapCache.NotEnoughSpaceException;
 import de.dirkdittmar.offheapCache.CompactableMap;
+import de.dirkdittmar.offheapCache.NotEnoughMemException;
 import de.dirkdittmar.offheapCache.internal.mem.MemChunk;
 import de.dirkdittmar.offheapCache.internal.mem.MemChunkSet;
 
@@ -75,7 +75,7 @@ public class InternalOffheapMap<K> implements CompactableMap<K, byte[]> {
 		checkArgument(value != null, "value != null");
 
 		if (value.length > buffer.capacity()) {
-			throw new NotEnoughSpaceException("Not enough memory in this cache");
+			throw new NotEnoughMemException("Not enough memory in this cache");
 		}
 
 		byte[] result = null;
@@ -95,7 +95,7 @@ public class InternalOffheapMap<K> implements CompactableMap<K, byte[]> {
 			freeRange = findRangeWithEnoughSpace(value.length);
 		}
 		if (freeRange == null) {
-			throw new NotEnoughSpaceException("Not enough memory in this cache");
+			throw new NotEnoughMemException("Not enough memory in this cache");
 		}
 
 		final Integer lower = freeRange.loIdx;

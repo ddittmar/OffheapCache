@@ -14,7 +14,7 @@ import java.util.Random;
 
 import org.junit.Test;
 
-import de.dirkdittmar.offheapCache.NotEnoughSpaceException;
+import de.dirkdittmar.offheapCache.NotEnoughMemException;
 import de.dirkdittmar.offheapCache.internal.InternalOffheapMap;
 
 public class InternalOffheapMapTest {
@@ -33,7 +33,7 @@ public class InternalOffheapMapTest {
 		basicCache.put(null, "foobar".getBytes("UTF8"));
 	}
 
-	@Test(expected = NotEnoughSpaceException.class)
+	@Test(expected = NotEnoughMemException.class)
 	public void testPutTooMuchStuff() {
 		final InternalOffheapMap<String> basicCache = new InternalOffheapMap<>(100);
 
@@ -84,7 +84,7 @@ public class InternalOffheapMapTest {
 		try {
 			basicCache.put("test2", stuff);
 			fail("wtf?");
-		} catch (final NotEnoughSpaceException e) {
+		} catch (final NotEnoughMemException e) {
 			System.out.println(String.format("expected: %s", e.getMessage()));
 		}
 	}
