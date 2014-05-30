@@ -255,8 +255,7 @@ public class InternalOffheapMap<K> implements CompactableMap<K, byte[]> {
 	}
 
 	@Override
-	public boolean containsValue(final Object value)
-			throws UnsupportedOperationException {
+	public boolean containsValue(final Object value) {
 		checkArgument(value instanceof byte[], "value instanceof byte[]");
 
 		final byte[] val = (byte[]) value;
