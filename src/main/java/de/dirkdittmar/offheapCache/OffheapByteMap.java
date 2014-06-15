@@ -10,14 +10,21 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import de.dirkdittmar.offheapCache.internal.InternalOffheapMap;
 import de.dirkdittmar.offheapCache.internal.Procedure;
 
-public class OffheapByteMap<K> implements CompactableMap<K, byte[]> {
+public class OffheapByteMap<K> implements CompactableConcurrentMap<K, byte[]> {
 
 	private final ReadWriteLock rwLock = new ReentrantReadWriteLock(true);
 
-	private final InternalOffheapMap<K> map;
+	private final CompactableConcurrentMap<K, byte[]> map;
 
 	public OffheapByteMap(final int size) {
-		this.map = new InternalOffheapMap<K>(size);
+		this(new InternalOffheapMap<K>(size));
+	}
+	
+	/**
+	 * For internal use or testing only!
+	 */
+	OffheapByteMap(final CompactableConcurrentMap<K, byte[]> map) {
+		this.map = map;
 	}
 
 	@Override

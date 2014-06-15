@@ -14,12 +14,12 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
-import de.dirkdittmar.offheapCache.CompactableMap;
+import de.dirkdittmar.offheapCache.CompactableConcurrentMap;
 import de.dirkdittmar.offheapCache.NotEnoughMemException;
 import de.dirkdittmar.offheapCache.internal.mem.MemChunk;
 import de.dirkdittmar.offheapCache.internal.mem.MemChunkSet;
 
-public class InternalOffheapMap<K> implements CompactableMap<K, byte[]> {
+public class InternalOffheapMap<K> implements CompactableConcurrentMap<K, byte[]> {
 
 	private final ByteBuffer buffer;
 

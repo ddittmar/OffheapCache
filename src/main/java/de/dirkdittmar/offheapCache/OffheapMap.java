@@ -5,15 +5,22 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class OffheapMap<K, V> implements CompactableMap<K, V> {
+public class OffheapMap<K, V> implements CompactableConcurrentMap<K, V> {
 
 	private final ByteConverter<V> converter;
 	
-	private final OffheapByteMap<K> map;
+	private final CompactableConcurrentMap<K, byte[]> map;
 	
 	public OffheapMap(final ByteConverter<V> converter, final int size) {
+		this(converter, new OffheapByteMap<K>(size));
+	}
+
+	/**
+	 * For internal use or testing only!
+	 */
+	OffheapMap(final ByteConverter<V> converter, final CompactableConcurrentMap<K, byte[]> map) {
 		this.converter = converter;
-		this.map = new OffheapByteMap<K>(size);
+		this.map = map;
 	}
 
 	@Override

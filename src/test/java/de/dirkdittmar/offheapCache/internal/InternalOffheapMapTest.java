@@ -1,4 +1,4 @@
-package de.dirkdittmar.offheadCache.internal;
+package de.dirkdittmar.offheapCache.internal;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
