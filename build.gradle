@@ -20,6 +20,7 @@ repositories {
 // In this section you declare the dependencies for your production and test code
 dependencies {
     testCompile 'junit:junit:4.11'
+    testCompile 'org.mockito:mockito-all:1.9.5'
 }
 
 tasks.withType(FindBugs) {
