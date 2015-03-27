@@ -3,5 +3,6 @@ build/*
 .gradle
 .project
 .settings
-
+.idea/
+*.iml
 /bin
